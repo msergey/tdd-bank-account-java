@@ -9,14 +9,14 @@ public class AccountTest {
     @Test
     public void newBalancesShouldHaveZeroBalance() {
         Account account = new Account();
-        assertThat(account.balance()).isEqualTo(0);
+        assertThat(account.getBalance()).isEqualTo(0);
     }
 
     @Test
     public void depositAmountToSetTheBalance() {
         Account account = new Account();
         account.deposit(10);
-        assertThat(account.balance()).isEqualTo(10);
+        assertThat(account.getBalance()).isEqualTo(10);
     }
 
     @Test
@@ -24,6 +24,15 @@ public class AccountTest {
         Account account = new Account();
         account.deposit(10);
         account.deposit(20);
-        assertThat(account.balance()).isEqualTo(30);
+        assertThat(account.getBalance()).isEqualTo(30);
+    }
+
+    @Test
+    public void withdrawMultipleAmountsToDecreaseTheBalance() {
+        Account account = new Account();
+        account.deposit(100);
+        account.withdraw(10);
+        account.withdraw(20);
+        assertThat(account.getBalance()).isEqualTo(70);
     }
 }
