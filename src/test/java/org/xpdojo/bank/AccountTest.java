@@ -1,5 +1,6 @@
 package org.xpdojo.bank;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,5 +35,22 @@ public class AccountTest {
         account.withdraw(10);
         account.withdraw(20);
         assertThat(account.getBalance()).isEqualTo(70);
+    }
+
+    @Test
+    public void withdrawExactAmountOfBalance() {
+        Account account = new Account();
+        account.deposit(100);
+        account.withdraw(100);
+        assertThat(account.getBalance()).isEqualTo(0);
+    }
+
+    @Test
+    public void withdrawGreaterBalanceThanExisting() {
+        Account account = new Account();
+        account.deposit(100);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            account.withdraw(101);
+        });
     }
 }
