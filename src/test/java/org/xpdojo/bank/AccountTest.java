@@ -13,6 +13,13 @@ public class AccountTest {
     }
 
     @Test
+    public void depositAmountToSetTheBalance() {
+        var account = new Account();
+        account.deposit(10);
+        assertThat(account.balance()).isEqualTo(10);
+    }
+
+    @Test
     public void depositMultipleAmountsToIncreaseTheBalance() {
         var account = new Account();
         account.deposit(10);
